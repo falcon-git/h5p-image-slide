@@ -85,8 +85,12 @@ H5P.ImageSlide = (function ($) {
    * Typically used when the screen resizes, goes to fullscreen or similar
    */
   C.prototype.adjustSize = function() {
-    var imageHeight = this.options.image.params.file.height;
-    var imageWidth = this.options.image.params.file.width;
+    var file = this.options.image.params.file;
+    if (!file) {
+      return;
+    }
+    var imageHeight = file.height;
+    var imageWidth = file.width;
 
     var imageAspectRatio = imageWidth / imageHeight;
     if (this.aspectRatio >= imageAspectRatio) {
