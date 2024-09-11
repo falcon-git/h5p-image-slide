@@ -13,15 +13,17 @@ H5P.ImageSlide = (function ($) {
     // Extend defaults with provided options
     this.options = $.extend(true, {}, {
       image: null,
+      description: ''
     }, options);
     // Keep provided id.
     this.contentId = contentId;
 
     this.image = H5P.newRunnable(this.options.image, this.contentId);
-    this.image.on('loaded', function() {
+    this.image.on('loaded', function () {
       self.trigger('loaded');
       self.trigger('resize');
     });
+    this.description = this.options.description;
   }
 
   C.prototype = Object.create(H5P.EventDispatcher.prototype);
@@ -50,15 +52,23 @@ H5P.ImageSlide = (function ($) {
     // Add image
     this.image.attach(this.$imageHolder);
 
+    // Add description if it exists
+    if (this.description) {
+      $('<div>', {
+        class: 'h5p-image-description',
+        text: this.description
+      }).appendTo($container);
+    }
+
     this.adjustSize();
   };
 
   /**
-   * Set the ascpect ratio for this slide
+   * Set the aspect ratio for this slide
    *
    * @param {Integer} newAspectRatio the aspect ratio
    */
-  C.prototype.setAspectRatio = function(newAspectRatio) {
+  C.prototype.setAspectRatio = function (newAspectRatio) {
     this.aspectRatio = newAspectRatio;
     // Adjust size if image has been attached
     if (this.$imageHolder) {
@@ -71,7 +81,7 @@ H5P.ImageSlide = (function ($) {
    *
    * Typically used when exiting fullscreen mode
    */
-  C.prototype.resetAspectRatio = function() {
+  C.prototype.resetAspectRatio = function () {
     this.aspectRatio = this.originalAspectRatio;
     // Adjust size if image has been attached
     if (this.$imageHolder) {
@@ -84,7 +94,7 @@ H5P.ImageSlide = (function ($) {
    *
    * Typically used when the screen resizes, goes to fullscreen or similar
    */
-  C.prototype.adjustSize = function() {
+  C.prototype.adjustSize = function () {
     var imageHeight = this.options.image.params.file.height;
     var imageWidth = this.options.image.params.file.width;
 
