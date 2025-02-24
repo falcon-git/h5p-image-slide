@@ -14,5 +14,28 @@
     "description": "Optional. This text is displayed underneath the image.",
     "optional": true,
     "maxLength": 1000
+  },
+  {
+    "name": "a11y",
+    "type": "group",
+    "label": "Accessibility texts",
+    "importance": "low",
+    "common": true,
+    "fields": [
+      {
+        "name": "expandDescription",
+        "type": "text",
+        "label": "Expand description",
+        "importance": "low",
+        "default": "Expand description"
+      },
+      {
+        "name": "collapseDescription",
+        "type": "text",
+        "label": "Collapse description",
+        "importance": "low",
+        "default": "Collapse description"
+      }
+    ]
   }
 ]
