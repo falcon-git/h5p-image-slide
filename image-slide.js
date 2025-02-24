@@ -82,7 +82,7 @@ H5P.ImageSlide = (function ($) {
 
       this.descriptionText = document.createElement('div');
       this.descriptionText.classList.add('h5p-description-text');
-      this.descriptionText.textContent = this.description; // TODO: Check if this is safe
+      this.descriptionText.innerHTML = this.description;
       this.descriptionContainer.append(this.descriptionText);
 
       this.toggleDescription(false);
